@@ -1,0 +1,52 @@
+<!-- LAUNCH FILE FOR PANDA VISION  -->
+
+<!-- TODO: -->
+<!-- 1. Add camera frame to URDF in model in leus@dual_panda -->
+<!-- 2. Write launch file to start realsense visoin -->
+<!-- 3. Option -->
+<!-- 3.1  Start this launch file from leus@dual_panda (by using machine tag) -->
+
+<launch>
+  <arg name="rarm_camera_serial_no" default="017322070987"/>
+  <arg name="larm_camera_serial_no" default="021222073873"/>
+
+  <group ns="rarm_vision">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+      <arg name="device_type"       value="d435"/>
+      <arg name="serial_no"         value="$(arg rarm_camera_serial_no)"/>
+      <arg name='usb_port_id'       value=""/>
+      <arg name="tf_prefix"         value="rarm_camera"/>
+      <arg name="initial_reset"     value="true"/>
+      <arg name='filters'           value='pointcloud' />
+      <arg name="color_width"       value="640"/>
+      <arg name="color_height"      value="480"/>
+      <arg name="depth_width"       value="640"/>
+      <arg name="depth_height"      value="480"/>
+      <arg name="clip_distance"     value="-2"/>
+    </include>
+  </group>
+
+  <group ns="larm_vision">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
+      <arg name="device_type"       value="d435"/>
+      <arg name="serial_no"         value="$(arg larm_camera_serial_no)"/>
+      <arg name='usb_port_id'       value=""/>
+      <arg name="tf_prefix"         value="larm_camera"/>
+      <arg name="initial_reset"     value="true"/>
+      <arg name='filters'           value='pointcloud' />
+      <arg name="color_width"       value="640"/>
+      <arg name="color_height"      value="480"/>
+      <arg name="depth_width"       value="640"/>
+      <arg name="depth_height"      value="480"/>
+      <arg name="clip_distance"     value="-2"/>
+    </include>
+  </group>
+
+  <!-- <group ns="larm_vision"> -->
+  <!--   <include file="$(find realsense2_camera)/launch/rs_camera.launch" > -->
+  <!--     <arg name='usb_port_id' value="$(arg larm_camera_port_id)"/> -->
+  <!--     <arg name='filters' value='pointcloud' /> -->
+  <!--   </include> -->
+  <!-- </group> -->
+
+</launch>
