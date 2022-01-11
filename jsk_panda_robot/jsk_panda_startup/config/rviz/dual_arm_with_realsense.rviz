@@ -6,14 +6,13 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /RobotModel1
-        - /Image1
-        - /Image2
-        - /Image3
-        - /DepthCloud1
+        - /TF1
+        - /TF1/Frames1
         - /DepthCloud1/Auto Size1
+        - /DepthCloud2
+        - /DepthCloud2/Auto Size1
       Splitter Ratio: 0.5
-    Tree Height: 140
+    Tree Height: 404
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -32,7 +31,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Image
+    SyncSource: DepthCloud
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -100,6 +99,14 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        larm_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        larm_end_effector:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         larm_hand:
           Alpha: 1
           Show Axes: false
@@ -164,6 +171,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        rarm_end_effector:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         rarm_hand:
           Alpha: 1
           Show Axes: false
@@ -224,6 +235,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        workbench:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       Robot Description: /dual_panda/robot_description
       TF Prefix: ""
@@ -259,19 +275,183 @@ Visualization Manager:
       Use rainbow: true
       Value: false
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        camera_link:
+          Value: false
+        controller0:
+          Value: false
+        controller_plane0:
+          Value: false
+        display:
+          Value: false
+        dual_arm_base:
+          Value: false
+        fisheye_frame:
+          Value: false
+        fixed_base:
+          Value: false
+        larm_EE:
+          Value: false
+        larm_K:
+          Value: false
+        larm_camera_color_frame:
+          Value: false
+        larm_camera_color_optical_frame:
+          Value: false
+        larm_camera_depth_frame:
+          Value: false
+        larm_camera_depth_optical_frame:
+          Value: false
+        larm_camera_link:
+          Value: false
+        larm_end_effector:
+          Value: false
+        larm_hand:
+          Value: false
+        larm_leftfinger:
+          Value: false
+        larm_link0:
+          Value: false
+        larm_link1:
+          Value: false
+        larm_link2:
+          Value: false
+        larm_link3:
+          Value: false
+        larm_link4:
+          Value: false
+        larm_link5:
+          Value: false
+        larm_link6:
+          Value: false
+        larm_link7:
+          Value: false
+        larm_link8:
+          Value: false
+        larm_rightfinger:
+          Value: false
+        lpov-body_back:
+          Value: true
+        rarm_EE:
+          Value: false
+        rarm_K:
+          Value: false
+        rarm_camera_color_frame:
+          Value: false
+        rarm_camera_color_optical_frame:
+          Value: false
+        rarm_camera_depth_frame:
+          Value: false
+        rarm_camera_depth_optical_frame:
+          Value: false
+        rarm_camera_link:
+          Value: false
+        rarm_end_effector:
+          Value: false
+        rarm_hand:
+          Value: false
+        rarm_leftfinger:
+          Value: false
+        rarm_link0:
+          Value: false
+        rarm_link1:
+          Value: false
+        rarm_link2:
+          Value: false
+        rarm_link3:
+          Value: false
+        rarm_link4:
+          Value: false
+        rarm_link5:
+          Value: false
+        rarm_link6:
+          Value: false
+        rarm_link7:
+          Value: false
+        rarm_link8:
+          Value: false
+        rarm_rightfinger:
+          Value: false
+        workbench:
+          Value: false
       Marker Scale: 0.5
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        dual_arm_base:
+          camera_link:
+            {}
+          controller0:
+            {}
+          controller_plane0:
+            {}
+          display:
+            {}
+          fisheye_frame:
+            {}
+          fixed_base:
+            larm_link0:
+              larm_link1:
+                larm_link2:
+                  larm_link3:
+                    larm_link4:
+                      larm_link5:
+                        larm_link6:
+                          larm_link7:
+                            larm_camera_link:
+                              larm_camera_color_frame:
+                                larm_camera_color_optical_frame:
+                                  lpov-body_back:
+                                    {}
+                              larm_camera_depth_frame:
+                                larm_camera_depth_optical_frame:
+                                  {}
+                            larm_end_effector:
+                              {}
+                            larm_link8:
+                              larm_EE:
+                                larm_K:
+                                  {}
+                              larm_hand:
+                                larm_leftfinger:
+                                  {}
+                                larm_rightfinger:
+                                  {}
+            rarm_link0:
+              rarm_link1:
+                rarm_link2:
+                  rarm_link3:
+                    rarm_link4:
+                      rarm_link5:
+                        rarm_link6:
+                          rarm_link7:
+                            rarm_camera_link:
+                              rarm_camera_color_frame:
+                                rarm_camera_color_optical_frame:
+                                  {}
+                              rarm_camera_depth_frame:
+                                rarm_camera_depth_optical_frame:
+                                  {}
+                            rarm_end_effector:
+                              {}
+                            rarm_link8:
+                              rarm_EE:
+                                rarm_K:
+                                  {}
+                              rarm_hand:
+                                rarm_leftfinger:
+                                  {}
+                                rarm_rightfinger:
+                                  {}
+          workbench:
+            {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -306,7 +486,7 @@ Visualization Manager:
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: Image
+      Name: Right Camera Image
       Normalize Range: true
       Queue Size: 2
       Transport Hint: raw
@@ -512,19 +692,7 @@ Visualization Manager:
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Unreliable: false
-      Value: true
-    - Class: rviz/Image
-      Enabled: true
-      Image Topic: /camera/rgb/image_raw
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
+      Name: Left Camera Image
       Normalize Range: true
       Queue Size: 2
       Transport Hint: raw
@@ -548,6 +716,42 @@ Visualization Manager:
       Color Transport Hint: raw
       Decay Time: 0
       Depth Map Topic: /rarm_vision/camera/depth/image_rect_raw
+      Depth Map Transport Hint: raw
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: DepthCloud
+      Occlusion Compensation:
+        Occlusion Time-Out: 30
+        Value: false
+      Position Transformer: XYZ
+      Queue Size: 5
+      Selectable: true
+      Size (Pixels): 3
+      Style: Flat Squares
+      Topic Filter: true
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Auto Size:
+        Auto Size Factor: 1
+        Value: true
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/DepthCloud
+      Color: 255; 255; 255
+      Color Image Topic: ""
+      Color Transformer: RGB8
+      Color Transport Hint: raw
+      Decay Time: 0
+      Depth Map Topic: /larm_vision/camera/depth/image_rect_raw
       Depth Map Transport Hint: raw
       Enabled: true
       Invert Rainbow: false
@@ -594,7 +798,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.442953586578369
+      Distance: 2.14917254447937
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -609,20 +813,22 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3553983271121979
+      Pitch: 0.13539884984493256
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.173583984375
+      Yaw: 5.853593349456787
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 759
+  Height: 1023
   Hide Left Dock: false
   Hide Right Dock: false
-  Image:
+  Left Camera Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001f7000000c9fc020000000bfb0000001200530065006c0065006300740069006f006e00000003a1000000b00000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007301000001d2000000c9000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d00650072006101000002d8000000c80000000000000000fb0000000c00430061006d00650072006101000002d8000000c80000000000000000fb000000100044006900730070006c006100790073000000058d000001e00000000000000000000000010000010f00000367fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b00000367000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b20000000000000000000000020000056d0000018ffc0100000006fb0000000a0049006d0061006700650100000000000001c50000005e00fffffffb0000000a0049006d00610067006501000001cb0000023b0000005e00fffffffb0000000a0049006d006100670065010000040c000001610000005e00fffffffb0000000c00430061006d0065007200610100000589000001f70000000000000000fb0000000a0049006d00610067006501000004360000034a0000000000000000fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000056d00000039fc0100000002fb0000000800540069006d006501000000000000056d000002eb00fffffffb0000000800540069006d0065010000000000000450000000000000000000000370000000c900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001f7000001d1fc020000000bfb0000001200530065006c0065006300740069006f006e00000003a1000000b00000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007301000001d2000001d1000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d00650072006101000002d8000000c80000000000000000fb0000000c00430061006d00650072006101000002d8000000c80000000000000000fb000000100044006900730070006c006100790073000000058d000001e00000000000000000000000010000010f00000367fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b00000367000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b2000000000000000000000002000004f30000018ffc0100000006fb0000000a0049006d00610067006501000000000000012d0000000000000000fb00000022004c006500660074002000430061006d00650072006100200049006d006100670065010000000000000270000000b500fffffffb0000002400520069006700680074002000430061006d00650072006100200049006d00610067006501000002760000027d000000be00fffffffb0000000c00430061006d0065007200610100000589000001f70000000000000000fb0000000a0049006d00610067006501000004360000034a0000000000000000fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004f300000039fc0100000002fb0000000800540069006d00650100000000000004f3000002eb00fffffffb0000000800540069006d00650100000000000004500000000000000000000002f6000001d100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Right Camera Image:
+    collapsed: false
   Selection:
     collapsed: false
   Time:
@@ -631,6 +837,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1389
-  X: 149
-  Y: 149
+  Width: 1267
+  X: 67
+  Y: 27
