@@ -28,33 +28,20 @@
     <arg name="save_multisense" value="$(arg save_multisense)" />
     <arg if = "$(arg quiet)" name="other_options" value="-q"/>
     <arg name="other_topics" value="$(arg other_topics)
-				    /right_camera/camera_info
-        			    /right_camera/image_raw/compressed
-				    /left_camera/camera_info
-				    /left_camera/image_raw/compressed
 				    /larm_vision/camera/color/camera_info
-				    /larm_vision/camera/color/image_raw
 				    /larm_vision/camera/color/image_raw/compressed
 				    /rarm_vision/camera/color/camera_info
-				    /rarm_vision/camera/color/image_raw
 				    /rarm_vision/camera/color/image_raw/compressed
 				    /left_tag_detections
-				    /left_tag_detections_image
 				    /left_tag_detections_image/compressed
 				    /right_tag_detections
-				    /right_tag_detections_image
 				    /right_tag_detections_image/compressed
-				    /larm_cable_terminal_detection/general_contours/image
 				    /larm_cable_terminal_detection/general_contours/image/compressed
 				    /larm_cable_terminal_detection/general_contours/rectangles
-				    /larm_cable_terminal_detection/hsv_color_filter/image
 				    /larm_cable_terminal_detection/hsv_color_filter/image/compressed
-				    /rarm_cable_terminal_detection/general_contours/image
 				    /rarm_cable_terminal_detection/general_contours/image/compressed
 				    /rarm_cable_terminal_detection/general_contours/rectangles
-				    /rarm_cable_terminal_detection/hsv_color_filter/image
-				    /rarm_cable_terminal_detection/general_contours/rectangles
-				    /rarm_cable_terminal_detection/hsv_color_filter/image
+				    /rarm_cable_terminal_detection/hsv_color_filter/image/compressed
                                     /dual_panda/larm/status_overlay
                                     /dual_panda/rarm/status_overlay
                                     /dual_panda/larm/franka_gripper/joint_states
@@ -81,7 +68,6 @@
 				    /synced/dual_panda/joint_states
 				    /synced/dual_panda/larm_state_controller/F_ext
 				    /synced/dual_panda/rarm_state_controller/F_ext
-				    /synced/right_camera/image_raw/compressed
                                     " />
     <arg name="save_dir" value="$(arg save_dir)" />
     <arg name="bagfile_prefix" value="$(arg bagfile_prefix)" />
