@@ -28,11 +28,6 @@
     <arg name="save_multisense" value="$(arg save_multisense)" />
     <arg if = "$(arg quiet)" name="other_options" value="-q"/>
     <arg name="other_topics" value="$(arg other_topics)
-                                    /audio
-				    /camera/depth/camera_info
-                                    /camera/depth/image_raw/compressedDepth
-                                    /camera/rgb/camera_info
-                                    /camera/rgb/image_raw/compressed
 				    /right_camera/camera_info
         			    /right_camera/image_raw/compressed
 				    /left_camera/camera_info
@@ -49,6 +44,17 @@
 				    /right_tag_detections
 				    /right_tag_detections_image
 				    /right_tag_detections_image/compressed
+				    /larm_cable_terminal_detection/general_contours/image
+				    /larm_cable_terminal_detection/general_contours/image/compressed
+				    /larm_cable_terminal_detection/general_contours/rectangles
+				    /larm_cable_terminal_detection/hsv_color_filter/image
+				    /larm_cable_terminal_detection/hsv_color_filter/image/compressed
+				    /rarm_cable_terminal_detection/general_contours/image
+				    /rarm_cable_terminal_detection/general_contours/image/compressed
+				    /rarm_cable_terminal_detection/general_contours/rectangles
+				    /rarm_cable_terminal_detection/hsv_color_filter/image
+				    /rarm_cable_terminal_detection/general_contours/rectangles
+				    /rarm_cable_terminal_detection/hsv_color_filter/image
                                     /dual_panda/larm/status_overlay
                                     /dual_panda/rarm/status_overlay
                                     /dual_panda/larm/franka_gripper/joint_states
