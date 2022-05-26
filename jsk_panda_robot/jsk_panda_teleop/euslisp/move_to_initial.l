@@ -1,14 +1,13 @@
 #!/usr/bin/env roseus
+(load "package://panda_eus/euslisp/dual_panda-interface.l")
+
 (defun main ()
-  (require :dual_panda-interface "package://panda_eus/euslisp/dual_panda-interface.l")
 
   (ros::roseus "move_to_initial_pose")
 
   (dual_panda-init)
 
-  (setq *robot* *dual_panda*)
-
-  (send *robot* :angle-vector reset-pose)
+  (send *robot* :angle-vector (send *robot* :reset-manip-pose))
   (when (send *ri* :check-error)
     (send *ri* :recover-error))
   (send *ri* :angle-vector (send *robot* :angle-vector) 3000)
