@@ -8,7 +8,6 @@
   <arg name="launch_moveit" default="false" />
   <arg name="launch_imagesift" default="false" />
   <arg name="launch_facedetection" default="false" />
-  <arg name="launch_sound_play" default="true" />
   <arg name="launch_mjpeg_server" default="false" />
   <arg name="launch_gripper_sensor" default="true" />
   <arg name="launch_virtual_force" default="true" />
@@ -27,6 +26,12 @@
   <arg name="launch_c3_startup" default="false" />
   <arg name="use_map_keepout" default="true"
        doc="whether to use keepout map or not for navigation (default: true)"/>
+  <arg name="launch_dialogflow_task_executive" default="true"
+       doc="whether launch dialogflow_task_executive or not."/>
+  <arg name="launch_gdrive_server_c1" default="true"
+       doc="whether launch gdrive_server on c1 or not."/>
+  <arg name="launch_gdrive_server_c2" default="true"
+       doc="whether launch gdrive_server on c2 or not."/>
   <arg name="USER_NAME" default="false" />
 
   <include file="$(find jsk_pr2_startup)/jsk_pr2.machine"
@@ -58,15 +63,6 @@
            if="$(arg launch_map)">
     <arg name="MACHINE" value="c2" />
     <arg name="keepout" value="$(arg use_map_keepout)" />
-  </include>
-
-  <!-- japanese speech node -->
-  <include file="$(find voice_text)/launch/voice_text.launch"
-           if="$(arg launch_sound_play)">
-    <arg name="use_machine" value="false" />
-    <arg name="sound_play_machine" value="c1" />
-    <arg name="voice_text_machine" value="c1" />
-    <arg name="sound_play_respawn" value="true" />
   </include>
 
   <!-- kinect node -->
@@ -171,7 +167,32 @@
     </rosparam>
   </node>
 
+  <include if="$(arg launch_dialogflow_task_executive)"
+           file="$(find dialogflow_task_executive)/launch/dialogflow_task_executive.launch">
+    <arg name="run_app_manager" value="false" />
+  </include>
+
+  <include if="$(arg launch_gdrive_server_c1)"
+           file="$(find jsk_pr2_startup)/jsk_pr2_lifelog/pr2_gdrive_server.launch">
+    <arg name="respawn" value="true" />
+    <arg name="machine" value="localhost" />
+    <arg name="node_name" value="gdrive_server" />
+  </include>
+
+  <include if="$(arg launch_gdrive_server_c2)"
+           file="$(find jsk_pr2_startup)/jsk_pr2_lifelog/pr2_gdrive_server.launch">
+    <arg name="respawn" value="true" />
+    <arg name="machine" value="c2" />
+    <arg name="node_name" value="gdrive_server_c2" />
+  </include>
+
   <node pkg="jsk_robot_startup" type="finish_launch_sound.py"
         machine="c2"
         name="finish_launch_sound" />
+
+  <!-- check if room light is on -->
+  <node name="check_room_light" pkg="jsk_robot_startup" type="check_room_light.py">
+    <remap from="~input" to="/kinect_head/rgb/image_raw" />
+  </node>
+
 </launch>

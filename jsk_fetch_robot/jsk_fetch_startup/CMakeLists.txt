@@ -30,6 +30,31 @@ install(DIRECTORY config launch scripts data
 install(FILES jsk_fetch.machine
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
+# Create Rviz icon for fetch
+macro(configure_icon_files icol iname)
+  set(ICON_COLOR ${icol})
+  set(FETCH_NAME ${iname})
+  configure_file(config/RVizfetch.desktop.in
+    $ENV{HOME}/.local/share/applications/RViz${FETCH_NAME}.desktop)
+  # If HOSTNAME is "fetchxxx", create desktop icons
+  cmake_host_system_information(RESULT _host_name QUERY HOSTNAME)
+  if(${_host_name} MATCHES "^${FETCH_NAME}")
+    configure_file(config/RVizfetch.desktop.in
+      $ENV{HOME}/Desktop/RViz${FETCH_NAME}.desktop)
+    configure_file(config/Supervisorfetch.desktop.in
+      $ENV{HOME}/Desktop/Supervisor${FETCH_NAME}.desktop)
+    # Multitouch gesture program for touchscrenn on Fetch's back
+    configure_file(config/touchegg.conf
+      $ENV{HOME}/.config/touchegg/touchegg.conf)
+    configure_file(config/touchegg.desktop
+      $ENV{HOME}/.config/autostart/touchegg.desktop)
+  endif()
+endmacro(configure_icon_files)
+
+configure_icon_files(blue fetch15)
+configure_icon_files(red fetch1075)
+
+
 #############
 ## Testing ##
 #############
@@ -39,7 +64,17 @@ if(CATKIN_ENABLE_TESTING)
   # https://github.com/ros/ros_comm/pull/998 respect if/unless for roslaunch-check (1.13.1)
   # https://github.com/ros/ros_comm/pull/1455 make roslaunch-check respect arg remappings with command line argument (1.14.4)
   set(roslaunch_check_script ${PROJECT_SOURCE_DIR}/scripts/roslaunch-check)
-  roslaunch_add_file_check(launch/fetch_bringup.launch launch_teleop:=false) # disable launch_teleop because fetch_auto_dock package exists only in the fetch's PC
+  # test fetch_bringup.launch only in indigo, melodic and above, because kinetic fetch is not released.
+  # disable launch_insta360 because jsk_perception with insta360 launch is not released yet.
+  if("$ENV{ROS_DISTRO}" STREQUAL "indigo")
+    # disable launch_teleop because fetch_auto_dock package exists only in the fetch's PC
+    roslaunch_add_file_check(launch/fetch_bringup.launch launch_teleop:=false launch_insta360:=false)
+  elseif("$ENV{ROS_DISTRO}" STRGREATER "kinetic")
+    # xacro parser error in kinetic and below
+    # xacro tries finding /etc/$ROS_DISTRO/calibrated_latest.urdf even if use_fetch_description is true.
+    roslaunch_add_file_check(launch/fetch.launch use_fetch_description:=true)
+    roslaunch_add_file_check(launch/fetch_bringup.launch launch_insta360:=false)
+  endif()
   roslaunch_add_file_check(launch/rviz.launch)
   roslaunch_add_file_check(launch/fetch_gazebo_bringup.launch)
   set(roslaunch_check_script ${roslaunch_DIR}/../scripts/roslaunch-check)

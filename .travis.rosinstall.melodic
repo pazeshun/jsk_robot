@@ -36,9 +36,25 @@
     local-name: fetchrobotics/fetch_ros
     uri: https://github.com/fetchrobotics/fetch_ros.git
     version: ba4bafdb802e474487d1e0d893aa25c9535dc55f
+# robot_pose_publisher is not released in melodic
+# https://github.com/GT-RAIL/robot_pose_publisher/issues/8
+# robot_pose_publisher is needed for rwt_nav
+- git:
+    local-name: GT-RAIL/robot_pose_publisher
+    uri: https://github.com/GT-RAIL/robot_pose_publisher.git
+    version: 0.2.4
 # for drc_task_common in jsk_demos
 # jsk_control is not released in melodic
 - tar:
     local-name: jsk_control/jsk_ik_server
     uri: https://github.com/tork-a/jsk_control-release/archive/release/kinetic/jsk_ik_server/0.1.14-0.tar.gz
     version: jsk_control-release-release-kinetic-jsk_ik_server-0.1.14-0
+# magni_robot is not released on meldoic (https://github.com/UbiquityRobotics-release/magni_robot-release)
+- git:
+    local-name: UbiquityRobotics/magni_robot
+    uri: https://github.com/UbiquityRobotics/magni_robot
+# denso_cobotta_control, denso_cobotta_descriptions, denso_cobotta_driver, and denso_cobotta_gripper are not released
+- git:
+    local-name: DENSORobot/denso_cobotta_ros
+    uri: https://github.com/DENSORobot/denso_cobotta_ros.git
+    version: bb60e75adb8477ed3402561b4ec3ba687af3f397

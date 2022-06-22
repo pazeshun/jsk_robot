@@ -1,4 +1,8 @@
 <launch>
+  <arg name="master" default="true" doc="launch master if enabled"/>
+  <arg name="master_address" default="localhost" doc="address for app_manager master"/>
+  <arg name="master_port" default="11313" doc="port for app_manager master"/>
+
   <arg name="use_applist" default="false" doc="load apps from applist argument"/>
   <arg name="applist" default="" doc="app dirs (space separated)"/>
 
@@ -11,6 +15,12 @@
        doc="launch roswww server if true"/>
   <arg name="roswww_port" default="8000"
        doc="port number for roswww server"/>
+  <arg name="basic" default="false"
+       doc="enable basic authentication" />
+  <arg name="basic_yaml" default="/var/lib/robot/roswww_basic_keys.yaml"
+       doc="basic yaml file path" />
+  <arg name="basic_flag" value="--basic $(arg basic) --basic-yaml $(arg basic_yaml)" if="$(arg basic)" />
+  <arg name="basic_flag" value="" unless="$(arg basic)" />
 
   <arg name="remote" default="false"
        doc="set true with valid 'machine' argument"/>
@@ -43,15 +53,21 @@
   <node if="$(arg launch_roswww)"
         name="roswww" pkg="roswww" type="webserver.py"
         output="screen" machine="$(arg machine)" respawn="$(arg respawn)"
-        args="--name roswww --webpath www --cached true
+        args="--name roswww --webpath www --cached true $(arg basic_flag)
               --port $(arg roswww_port) --start_port $(arg roswww_port) --end_port $(arg roswww_port)"/>
 
   <!--
   NOTE: Ensure the param '/robot/type' and '/robot/name' are defined when the nodes below are started.
   -->
   <include file="$(find app_manager)/launch/app_manager.launch">
+    <arg name="master" value="$(arg master)"/>
+    <arg name="master_address" value="$(arg master_address)"/>
+    <arg name="master_port" value="$(arg master_port)"/>
     <arg name="use_applist" value="$(arg use_applist)"/>
     <arg name="applist" value="$(arg applist)"/>
     <arg name="respawn" value="$(arg respawn)"/>
   </include>
+  <rosparam ns="app_manager">
+    enable_app_replacement: false
+  </rosparam>
 </launch>
