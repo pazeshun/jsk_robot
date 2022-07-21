@@ -271,11 +271,11 @@ class DualArmHandler(object):
                 no_ask=True)
             self.larm_handler.target_pose = self.larm_handler.set_initial_pose(
                 no_ask=True)
-
         # apply force feedback if connected
         if self.force_connecting:
             for arm in self.arms:
                 arm.apply_target_force()
+
         # recover error
         if self.rarm_handler.has_error or self.larm_handler.has_error:
             rospy.loginfo("Detected error in controller, recovering...")
