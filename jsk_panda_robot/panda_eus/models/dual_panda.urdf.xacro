@@ -38,7 +38,7 @@
     </collision>
     -->
     <visual>
-      <origin xyz="0.3 0 0.71" />
+      <origin xyz="0.55 0 0.71" />
       <geometry>
         <box size="0.6 1.2 0.02" />
       </geometry>
@@ -65,6 +65,27 @@
     <origin xyz="-0.08 0.0 0.8" rpy="0.0 0.0 0.0" />
   </joint>
 
+  <link name="workbench">
+   <visual>
+     <geometry>
+       <box size="0.5 0.5 0.01"/>
+     </geometry>
+     <material name="Workbench">
+       <color rgba="0.15 0.15 0.15 1.0"/>
+     </material>
+   </visual>
+   <collision>
+     <geometry>
+       <box size="0.5 0.5 0.01"/>
+     </geometry>
+   </collision>
+  </link>
+  <joint name="base_to_workbench" type="fixed">
+    <parent link="dual_arm_base"/>
+    <child  link="workbench"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.465 -0.150 1.145"/>
+  </joint>
+
   <!--link name="table_plane">
     <visual>
       <origin xyz="0.3 0 0.01" />
@@ -84,7 +105,7 @@
   </link-->
   <link name="controller_plane0">
     <visual>
-      <origin xyz="0.3 0 0.01" />
+      <origin xyz="0.55 0 0.01" />
       <geometry>
         <box size="0.6 0.8 0.02" />
       </geometry>
@@ -121,7 +142,7 @@
 
   <link name="controller0">
     <visual>
-      <origin xyz="0.3 0 0.134" />
+      <origin xyz="0.55 0 0.134" />
       <geometry>
         <box size="0.475 0.423 0.268" />
       </geometry>
