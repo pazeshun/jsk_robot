@@ -198,3 +198,31 @@ dual_arm_cartesian_pose_controller:
       - rarm_joint5
       - rarm_joint6
       - rarm_joint7
+
+larm_cartesian_impedance_controller:
+  type: franka_example_controllers/CartesianImpedanceExampleController
+  arm_id: larm
+  joint_names:
+    - larm_joint1
+    - larm_joint2
+    - larm_joint3
+    - larm_joint4
+    - larm_joint5
+    - larm_joint6
+    - larm_joint7
+larm_cartesian_impedance_controllerdynamic_reconfigure_compliance_param_node:
+  nullspace_stiffness: 0.0
+
+rarm_cartesian_impedance_controller:
+  type: franka_example_controllers/CartesianImpedanceExampleController
+  arm_id: rarm
+  joint_names:
+    - rarm_joint1
+    - rarm_joint2
+    - rarm_joint3
+    - rarm_joint4
+    - rarm_joint5
+    - rarm_joint6
+    - rarm_joint7
+rarm_cartesian_impedance_controllerdynamic_reconfigure_compliance_param_node:
+  nullspace_stiffness: 0.0
