@@ -11,12 +11,40 @@
     <arg name="rvizconfig" value="$(find jsk_panda_startup)/config/rviz/dual_panda2_play.rviz" />
   </include>
 
-  <group ns="/rarm_vision/camera/color">
-    <node name="republish"
-          pkg="image_transport" type="republish"
-          args="compressed raw">
-      <remap from="in" to="image_raw" />
-      <remap from="out" to="image_raw" />
+  <arg name="MANAGER" value="realsense2_camera_manager" />
+  <group ns="/rarm_vision/camera">
+    <group ns="color">
+      <node name="image_raw_republish"
+            pkg="image_transport" type="republish"
+            args="compressed raw">
+        <remap from="in" to="image_raw" />
+        <remap from="out" to="image_raw" />
+      </node>
+      <node name="image_rect_color_republish"
+            pkg="image_transport" type="republish"
+            args="compressed raw">
+        <remap from="in" to="image_rect_color" />
+        <remap from="out" to="image_rect_color" />
+      </node>
+    </group>
+    <group ns="depth">
+      <node name="republish"
+            pkg="image_transport" type="republish"
+            args="compressedDepth raw">
+        <remap from="in" to="image_rect_raw" />
+        <remap from="out" to="image_rect_raw" />
+      </node>
+    </group>
+    <node pkg="nodelet" type="nodelet" name="$(arg MANAGER)" args="manager" output="screen" />
+    <node pkg="nodelet" type="nodelet" name="point_cloud_xyzrgb"
+          args="load depth_image_proc/point_cloud_xyzrgb $(arg MANAGER)" output="screen">
+      <remap from="rgb/camera_info" to="color/camera_info" />
+      <remap from="rgb/image_rect_color" to="color/image_raw" />
+      <remap from="depth_registered/image_rect" to="depth/image_rect_raw" />
+      <remap from="depth_registered/points" to="depth/color/points" />
+      <rosparam>
+        queue_size: 100
+      </rosparam>
     </node>
   </group>
   <group ns="/larm_vision/camera/color">
