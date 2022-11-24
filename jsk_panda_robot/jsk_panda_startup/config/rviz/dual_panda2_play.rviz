@@ -1083,18 +1083,6 @@ Visualization Manager:
       Use rainbow: true
       Value: false
     - Class: rviz/Image
-      Enabled: true
-      Image Topic: /larm_vision/camera/color/image_raw
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Unreliable: false
-      Value: true
-    - Class: rviz/Image
       Enabled: false
       Image Topic: /larm_vision/camera/color/image_raw
       Max Value: 1
@@ -1106,6 +1094,18 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: false
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /larm_vision/camera/color/image_raw
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -1134,25 +1134,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.834120273590088
+      Distance: 0.8813154101371765
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.4273642301559448
-        Y: -0.00716510321944952
-        Z: 0.9658910632133484
+        X: 0.21025259792804718
+        Y: -0.36583423614501953
+        Z: 0.5932980179786682
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.2253989279270172
+      Pitch: 0.6403989195823669
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.9004116654396057
+      Yaw: 0.6354113817214966
     Saved: ~
 Window Geometry:
   Displays:
