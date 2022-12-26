@@ -14,7 +14,7 @@
     uri: https://github.com/ykawamura96/Geomagic_Touch_ROS_Drivers.git
     version: dual_phantom
 
-- git:
-    local-name: franka_ros
-    uri: https://github.com/ykawamura96/franka_ros.git
-    version: add_dual_arm_impedance_controller
+#- git:
+#    local-name: franka_ros
+#    uri: https://github.com/ykawamura96/franka_ros.git
+#    version: add_dual_arm_impedance_controller

@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<launch>
+  <group ns = "slave_arm">
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+      <!-- <node pkg="jsk_panda_teleop" type="phantom_to_cobotta.py" name="phantom_to_cobotta" output="screen"/> -->
+      <param name="tf_prefix" value="slave" />
+      <remap from="joint_states" to="/dual_panda/rarm/ik_result" />
+    </node>
+  </group>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_links_tf" args="0 0 0 0 0 0 /base_link slave/base_link" />
+</launch>
