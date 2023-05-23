@@ -7,13 +7,43 @@
   <arg name="load_gripper" default="true" />
   <arg name="xacro_args"   default="" />
 
-  <include file="$(find franka_control)/launch/franka_control.launch">
-    <arg name="robot_ip"     value="$(arg robot_ip)" />
-    <arg name="robot"        value="$(arg robot)" />
-    <arg name="arm_id"       value="$(arg arm_id)" />
-    <arg name="load_gripper" value="$(arg load_gripper)" />
-    <arg name="xacro_args"   value="$(arg xacro_args)" />
-  </include>
+  <arg name="use_franka_combined_control" default="true" />
 
-  <node name="position_joint_trajectory_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="position_joint_trajectory_controller" />
+  <group if="$(arg use_franka_combined_control)">
+    <arg name="robot_model" default="$(find franka_description)/robots/$(arg robot)/$(arg robot).urdf.xacro" />
+    <arg name="hw_config_file" default="$(find jsk_panda_startup)/config/panda_control_node.yaml" />
+    <arg name="controllers_file" default="$(find jsk_panda_startup)/config/panda_controllers.yaml" />
+    <arg name="controllers_to_start" default="franka_state_controller position_joint_trajectory_controller" />
+    <arg name="joint_states_source_list" default="[franka_state_controller/joint_states, franka_gripper/joint_states]" if="$(arg load_gripper)" />
+    <arg name="joint_states_source_list" default="[franka_state_controller/joint_states]" unless="$(arg load_gripper)" />
+
+    <include file="$(find franka_control)/launch/franka_combined_control.launch">
+      <arg name="robot" value="$(arg robot_model)" />
+      <arg name="args" value="hand:=$(arg load_gripper) arm_id:=$(arg arm_id) $(arg xacro_args)" />
+      <arg name="robot_id" value="$(arg arm_id)" />
+      <arg name="robot_ips" value="{$(arg arm_id)/robot_ip: $(arg robot_ip)}" />
+      <arg name="hw_config_file" value="$(arg hw_config_file)" />
+      <arg name="controllers_file" value="$(arg controllers_file)" />
+      <arg name="controllers_to_start" value="$(arg controllers_to_start)" />
+      <arg name="joint_states_source_list" value="$(arg joint_states_source_list)" />
+    </include>
+
+    <include file="$(find franka_gripper)/launch/franka_gripper.launch" if="$(arg load_gripper)">
+      <arg name="robot_ip" value="$(arg robot_ip)" />
+      <arg name="arm_id"   value="$(arg arm_id)" />
+    </include>
+  </group>
+
+  <group unless="$(arg use_franka_combined_control)">
+    <!-- franka_control.launch becomes not recommended because it does not publish has_error, which means -->
+    <include file="$(find franka_control)/launch/franka_control.launch">
+      <arg name="robot_ip"     value="$(arg robot_ip)" />
+      <arg name="robot"        value="$(arg robot)" />
+      <arg name="arm_id"       value="$(arg arm_id)" />
+      <arg name="load_gripper" value="$(arg load_gripper)" />
+      <arg name="xacro_args"   value="$(arg xacro_args)" />
+    </include>
+
+    <node name="position_joint_trajectory_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="position_joint_trajectory_controller" />
+  </group>
 </launch>
